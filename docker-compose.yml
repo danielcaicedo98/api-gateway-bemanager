@@ -11,6 +11,6 @@ services:
     command: /start
 
   bemanager-auth:
-  image: danielcaicedo8991/bemanager-auth:v1.0
-  ports:
-    - "3030:3030"
+    image: danielcaicedo8991/bemanager-auth:v1.0
+    ports:
+      - "3030:3030"
