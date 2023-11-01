@@ -4,34 +4,33 @@ const cors = require('cors');
 
 const app = express();
 const port =  8005;
-//app.use(express.json());
-// app.use(cors());
 
-
-
-// app.get('/example', (req, res) => {
-//     const data = {
-//       message: 'Este es un ejemplo de JSON',
-//       numero: 42,
-//       lista: ['manzana', 'banana', 'cereza'],
-//     };
-  
-//     res.json(data);
-//   });
-
+// app.use('/login', createProxyMiddleware({ 
+//     target: 'http://localhost:3030', 
+//     changeOrigin: true
+// }));
 app.use('/login', createProxyMiddleware({ 
-    target: 'http://localhost:3030', 
-    changeOrigin: true
+  target: 'https://authentication-production-f0de.up.railway.app', 
+  changeOrigin: true
 }));
+
+
 app.use('/quotation', createProxyMiddleware({ 
   target: 'http://localhost:8000', 
   changeOrigin: true
 }));
 
 app.use('/listado', createProxyMiddleware({ 
-  target: 'http://localhost:8080', 
+  target: 'http://localhost:8989', 
   changeOrigin: true
 }));
+
+app.use('/providers', createProxyMiddleware({ 
+    target: 'http://localhost:8420', 
+    changeOrigin: true
+}));
+
+
 
 
 
