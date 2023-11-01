@@ -1,4 +1,5 @@
 services:
+
   bemanager-quotes:
     image: zethoc/bm_quotes_api    
     env_file:    
