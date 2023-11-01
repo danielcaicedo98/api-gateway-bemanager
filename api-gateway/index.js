@@ -13,7 +13,7 @@ app.use('/quotation', createProxyMiddleware({
   target: 'http://bemanager-quotes:8000', 
   changeOrigin: true,
   pathRewrite: {
-    '^/quotation': ''
+    '^/quotation': 'quotation/'
   }
 }));
 
@@ -21,7 +21,7 @@ app.use('/clients', createProxyMiddleware({
   target: 'http://bemanager-clients:8989', 
   changeOrigin: true,
   pathRewrite: {
-    '^/clients': ''
+    '^/clients': 'listado/'
   }
 }));
 
@@ -29,8 +29,16 @@ app.use('/providers', createProxyMiddleware({
     target: 'http://bemanager-providers:8420', 
     changeOrigin: true,
     pathRewrite: {
-      '^/providers': ''
+      '^/providers': 'providers/api/providers/'
     }
+}));
+
+app.use('/providers/articles/', createProxyMiddleware({ 
+  target: 'http://bemanager-providers:8420', 
+  changeOrigin: true,
+  pathRewrite: {
+    '^/providers': 'providers/api/articles/'
+  }
 }));
 
 app.listen(port, () => {
