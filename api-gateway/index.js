@@ -33,11 +33,11 @@ app.use('/providers', createProxyMiddleware({
     }
 }));
 
-app.use('/providers/articles/', createProxyMiddleware({ 
+app.use('/articles', createProxyMiddleware({ 
   target: 'http://bemanager-providers:8420', 
   changeOrigin: true,
   pathRewrite: {
-    '^/providers': 'providers/api/articles/'
+    '^/articles': 'providers/api/articles/'
   }
 }));
 
