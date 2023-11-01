@@ -1,5 +1,4 @@
 services:
-
   apigateway:
     build:
       context: .
@@ -42,3 +41,8 @@ services:
     image: rianosnatalia637/bm_flujo_caja_api
     ports: 
       - "8787:8787"    
+  # bemanager-products:
+  #   image: deisym08/products-app-bm
+  #   ports: 
+  #     - "8787:8787"    
+       
