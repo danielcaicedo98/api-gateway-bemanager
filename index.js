@@ -28,6 +28,10 @@ app.use('/quotation', createProxyMiddleware({
   changeOrigin: true
 }));
 
+app.use('/listado', createProxyMiddleware({ 
+  target: 'http://localhost:8080', 
+  changeOrigin: true
+}));
 
 
 
