@@ -1,9 +1,23 @@
 services:
 
+  apigateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8005:8005"
+    volumes:
+      - .:/app
+    depends_on:
+      - bemanager-quotes
+      - bemanager-auth
+      - bemanager-clients
+      - bemanager-providers
+
   bemanager-quotes:
-    image: zethoc/bm_quotes_api    
+    image: zethoc/bm_quotes_api   
     env_file:    
-      - ./.envs/.local/.postgres
+      - ./.envs/.local/.bm_quotes_api/.postgres
     ports:
       - "8000:8000"   
     command: /start
@@ -22,7 +36,3 @@ services:
     image: nhuertasuv/bm-providers-api
     ports: 
       - "8420:8420"    
-
-
-
-

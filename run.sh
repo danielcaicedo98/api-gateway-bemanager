@@ -1,3 +1,3 @@
 docker-compose up -d
 
-node index.js
+node api-gateway/index.js
