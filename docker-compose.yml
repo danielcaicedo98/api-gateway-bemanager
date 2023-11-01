@@ -9,6 +9,7 @@ services:
     volumes:
       - .:/app
     depends_on:
+      - bemanager-cash-flow
       - bemanager-quotes
       - bemanager-auth
       - bemanager-clients
@@ -35,4 +36,9 @@ services:
   bemanager-providers:
     image: nhuertasuv/bm-providers-api
     ports: 
-      - "8420:8420"    
+      - "8420:8420"   
+
+  bemanager-cash-flow:
+    image: rianosnatalia637/bm_flujo_caja_api
+    ports: 
+      - "8787:8787"    

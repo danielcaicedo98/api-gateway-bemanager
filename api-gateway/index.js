@@ -34,12 +34,22 @@ app.use('/providers', createProxyMiddleware({
 }));
 
 app.use('/articles', createProxyMiddleware({ 
-  target: 'http://bemanager-providers:8420', 
+  target: 'http://localhost:8420', 
   changeOrigin: true,
   pathRewrite: {
     '^/articles': 'providers/api/articles/'
   }
 }));
+
+app.use('/cashflow', createProxyMiddleware({ 
+  target: 'http://localhost:8787', 
+  changeOrigin: true,
+  pathRewrite: {
+    '^/cashflow': '/app'
+  }
+}));
+
+
 
 app.listen(port, () => {
    console.log(`Api Gateway service listening at http://127.0.0.1:${port}`)
