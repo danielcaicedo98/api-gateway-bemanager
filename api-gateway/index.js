@@ -49,6 +49,13 @@ app.use('/cashflow', createProxyMiddleware({
   }
 }));
 
+app.use('/category', createProxyMiddleware({ 
+  target: 'http://localhost:8686', 
+  changeOrigin: true,
+  pathRewrite: {
+    '^/category': 'category/'
+  }
+}));
 
 
 app.listen(port, () => {
