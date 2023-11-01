@@ -12,11 +12,12 @@ services:
     ports:
       - "3030:3030"
 
-  # bemanager-clients:
-  #   image: anborja/bm_clients_api
-  #   ports: 
-  #     - "8989:8989"    
   bemanager-clients:
+    image: anborja/bm_clients_api
+    ports: 
+      - "8989:8989"    
+
+  bemanager-providers:
     image: nhuertasuv/bm-providers-api
     ports: 
       - "8420:8420"    

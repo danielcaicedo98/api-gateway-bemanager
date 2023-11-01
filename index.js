@@ -30,10 +30,6 @@ app.use('/providers', createProxyMiddleware({
     changeOrigin: true
 }));
 
-
-
-
-
 app.listen(port, () => {
    console.log(`Api Gateway service listening at http://127.0.0.1:${port}`)
 })
