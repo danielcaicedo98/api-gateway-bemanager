@@ -10,7 +10,7 @@ app.use('/login', createProxyMiddleware({
 }));
 
 app.use('/quotation', createProxyMiddleware({ 
-  target: 'http://localhost:8000', 
+  target: 'http://bemanager-quotes:8000', 
   changeOrigin: true,
   pathRewrite: {
     '^/quotation': 'quotation/'
@@ -18,7 +18,7 @@ app.use('/quotation', createProxyMiddleware({
 }));
 
 app.use('/clients', createProxyMiddleware({ 
-  target: 'http://localhost:8989', 
+  target: 'http://bemanager-clients:8989', 
   changeOrigin: true,
   pathRewrite: {
     '^/clients': 'listado/'
@@ -26,7 +26,7 @@ app.use('/clients', createProxyMiddleware({
 }));
 
 app.use('/providers', createProxyMiddleware({ 
-    target: 'http://localhost:8420', 
+    target: 'http://bemanager-providers:8420', 
     changeOrigin: true,
     pathRewrite: {
       '^/providers': 'providers/api/providers/'
@@ -34,7 +34,7 @@ app.use('/providers', createProxyMiddleware({
 }));
 
 app.use('/articles', createProxyMiddleware({ 
-  target: 'http://localhost:8420', 
+  target: 'http://bemanager-providers:8420', 
   changeOrigin: true,
   pathRewrite: {
     '^/articles': 'providers/api/articles/'
@@ -42,7 +42,7 @@ app.use('/articles', createProxyMiddleware({
 }));
 
 app.use('/cashflow', createProxyMiddleware({ 
-  target: 'http://localhost:8787', 
+  target: 'http://bemanager-cash-flow:8787', 
   changeOrigin: true,
   pathRewrite: {
     '^/cashflow': 'app/'
@@ -50,12 +50,13 @@ app.use('/cashflow', createProxyMiddleware({
 }));
 
 app.use('/category', createProxyMiddleware({ 
-  target: 'http://localhost:8686', 
+  target: 'http://bemanager-products:8686', 
   changeOrigin: true,
   pathRewrite: {
     '^/category': 'category/'
   }
 }));
+
 
 
 app.listen(port, () => {
