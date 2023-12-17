@@ -7,44 +7,92 @@ services:
       - "8005:8005"
     volumes:
       - .:/app
+    depends_on:      
+      - prometheus
+      - prometheus_login
+      - grafana    
+
+      # - bemanager-cash-flow
+      # - bemanager-quotes
+      # - bemanager-clients
+      # - bemanager-providers
+      # - bemanager-products
+
+
+
+  # bemanager-quotes:
+  #   image: zethoc/bm_quotes_api   
+  #   env_file:    
+  #     - ./.envs/.local/.bm_quotes_api/.postgres
+  #   ports:
+  #     - "8000:8000"   
+  #   command: /start
+
+ 
+
+  # bemanager-clients:
+  #   image: anborja/bm_clients_api
+  #   ports: 
+  #     - "8989:8989"    
+
+  # bemanager-providers:
+  #   image: nhuertasuv/bm-providers-api
+  #   ports: 
+  #     - "8420:8420"   
+
+  # bemanager-cash-flow:
+  #   image: rianosnatalia637/bm_flujo_caja_api
+  #   ports: 
+  #     - "8787:8787"    
+
+  # bemanager-products:
+  #   image: deisym08/products-app-bm
+  #   ports: 
+  #     - "8686:8686"    
+
+
+      
+
+
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - 9090:9090
+    restart: unless-stopped
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - prom_data:/prometheus
     depends_on:
-      - bemanager-cash-flow
-      - bemanager-quotes
-      - bemanager-auth
-      - bemanager-clients
-      - bemanager-providers
-      - bemanager-products
+      - prometheus_login  
 
-  bemanager-quotes:
-    image: zethoc/bm_quotes_api   
-    env_file:    
-      - ./.envs/.local/.bm_quotes_api/.postgres
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
     ports:
-      - "8000:8000"   
-    command: /start
+      - 3000:3000
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_USER=bm_admin
+      - GF_SECURITY_ADMIN_PASSWORD=bm_grafana
+    volumes:
+      - ./grafana:/etc/grafana/provisioning/datasources    
+    depends_on:
+      - prometheus
 
-  bemanager-auth:
-    image: danielcaicedo8991/bemanager-auth:v1.0
+  prometheus_login:
+    image: danielcaicedo8991/prometheus-login:v1.0
     ports:
-      - "3030:3030"
+      - 3030:3030  
 
-  bemanager-clients:
-    image: anborja/bm_clients_api
-    ports: 
-      - "8989:8989"    
+volumes:
+  prom_data:    
 
-  bemanager-providers:
-    image: nhuertasuv/bm-providers-api
-    ports: 
-      - "8420:8420"   
+  
 
-  bemanager-cash-flow:
-    image: rianosnatalia637/bm_flujo_caja_api
-    ports: 
-      - "8787:8787"    
+    
 
-  bemanager-products:
-    image: deisym08/products-app-bm
-    ports: 
-      - "8686:8686"    
        
