@@ -14,21 +14,29 @@ app.use('/prometheus', createProxyMiddleware({
   }
 }));
 
-app.use('/bm_auth', createProxyMiddleware({ 
-  target: 'http://prometheus_login:3030', 
-  changeOrigin: true,
-  pathRewrite: {
-    '^/bm_auth': 'bm_auth/'
-  }
-}));
+// app.use('/bm_auth', createProxyMiddleware({ 
+//   target: 'http://prometheus_login:3030', 
+//   changeOrigin: true,
+//   pathRewrite: {
+//     '^/bm_auth': 'bm_auth/'
+//   }
+// }));
 
-app.use('/grafana', createProxyMiddleware({ 
-  target: 'http://grafana:3000', 
-  changeOrigin: true,
-  pathRewrite: {
-    '^/grafana': '/'
-  }
-}));
+// app.use('/quotation', createProxyMiddleware({ 
+//   target: 'http://bemanager-quotes:8000', 
+//   changeOrigin: true,
+//   pathRewrite: {
+//     '^/quotation': 'quotation/'
+//   }
+// }));
+
+// app.use('/grafana', createProxyMiddleware({ 
+//   target: 'http://grafana:3000', 
+//   changeOrigin: true,
+//   pathRewrite: {
+//     '^/grafana': '/'
+//   }
+// }));
 
 
 // app.use('/grafana', createProxyMiddleware({ 
@@ -82,13 +90,13 @@ app.use('/grafana', createProxyMiddleware({
 //   }
 // }));
 
-// app.use('/providers/api', createProxyMiddleware({ 
-//     target: 'http://bemanager-providers:8420', 
-//     changeOrigin: true,
-//     pathRewrite: {
-//       '^/providers/api': 'providers/api/'
-//     }
-// }));
+app.use('/providers/api', createProxyMiddleware({ 
+    target: 'http://bemanager-providers:8420', 
+    changeOrigin: true,
+    pathRewrite: {
+      '^/providers/api': 'providers/api/'
+    }
+}));
 
 // app.use('/cashflow', createProxyMiddleware({ 
 //   target: 'http://bemanager-cash-flow:8787', 
